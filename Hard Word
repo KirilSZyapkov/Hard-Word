@@ -1,0 +1,27 @@
+function hardWord(input1) {
+    let letter = input1[0];
+    let listOfWords = input1[1];
+    letter = letter.split(`. `);
+    listOfWords.forEach(el => {
+        letter.forEach(element => {
+            let letIndex = letter.indexOf(element);
+            element = element.split(` `);
+
+            element.forEach(x => {
+                let miss = "_".repeat(el.length);
+                if (x.endsWith(",")) {
+                    miss = "_".repeat(el.length) + ",";
+                }
+                if (x === miss) {
+                    if (x.endsWith(",")) {
+                        el += ",";
+                    }
+                    let index = element.indexOf(x);
+                    element.splice(index, 1, el);
+                }
+            });
+            letter[letIndex] = element.join(` `);
+        });
+    });
+    console.log(letter.join(`. `));
+}
